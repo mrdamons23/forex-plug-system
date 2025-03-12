@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Plug System - Advanced Trading Indicator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="cursor-glow"></div>
+    
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="forex">FOREX</span><span class="plug">PLUG</span> <span class="system">SYSTEM</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <!-- Animated regression lines -->
+            <div class="regression-line" style="top: 20%; left: 0; width: 100%; transform: rotate(-2deg);"></div>
+            <div class="regression-line" style="top: 40%; left: -10%; width: 120%; transform: rotate(1deg); animation-delay: 2s;"></div>
+            <div class="regression-line" style="top: 60%; left: -5%; width: 110%; transform: rotate(-1deg); animation-delay: 4s;"></div>
+            <div class="regression-line" style="top: 80%; left: 0; width: 100%; transform: rotate(2deg); animation-delay: 6s;"></div>
+            
+            <!-- Buy/sell zones -->
+            <div class="zone-area buy" style="top: 25%; left: 15%; width: 200px; height: 100px; transform: rotate(-5deg);"></div>
+            <div class="zone-area sell" style="top: 60%; left: 60%; width: 250px; height: 120px; transform: rotate(7deg);"></div>
+            <div class="zone-area buy" style="top: 65%; left: 25%; width: 180px; height: 90px; transform: rotate(-3deg); animation-delay: 3s;"></div>
+            <div class="zone-area sell" style="top: 35%; left: 70%; width: 150px; height: 80px; transform: rotate(5deg); animation-delay: 5s;"></div>
+            
+            <!-- Price dots -->
+            <div class="price-dot" style="top: 30%; left: 20%;"></div>
+            <div class="price-dot" style="top: 35%; left: 25%; animation-delay: 0.5s;"></div>
+            <div class="price-dot" style="top: 38%; left: 30%; animation-delay: 1s;"></div>
+            <div class="price-dot" style="top: 36%; left: 35%; animation-delay: 1.5s;"></div>
+            <div class="price-dot" style="top: 40%; left: 40%; animation-delay: 2s;"></div>
+            <div class="price-dot" style="top: 45%; left: 45%; animation-delay: 2.5s;"></div>
+            <div class="price-dot" style="top: 50%; left: 50%; animation-delay: 3s;"></div>
+            <div class="price-dot" style="top: 55%; left: 55%; animation-delay: 3.5s;"></div>
+            <div class="price-dot" style="top: 58%; left: 60%; animation-delay: 4s;"></div>
+            <div class="price-dot" style="top: 62%; left: 65%; animation-delay: 4.5s;"></div>
+            <div class="price-dot" style="top: 65%; left: 70%; animation-delay: 5s;"></div>
+            
+            <!-- Signal dots -->
+            <div class="price-dot signal" style="top: 28%; left: 18%;"></div>
+            <div class="price-dot signal sell" style="top: 60%; left: 63%; animation-delay: 1.5s;"></div>
+            <div class="price-dot signal" style="top: 68%; left: 25%; animation-delay: 3s;"></div>
+            
+            <!-- Formula fragments -->
+            <div class="formula-fragment" style="top: 15%; left: 10%; animation-delay: 1s;">y = mx + b</div>
+            <div class="formula-fragment" style="top: 25%; left: 80%; animation-delay: 3s;">d_max = max(|P_i - LR_i|)</div>
+            <div class="formula-fragment" style="top: 75%; left: 15%; animation-delay: 5s;">ATR_threshold = 0.6 × ATR_50</div>
+            <div class="formula-fragment" style="top: 65%; left: 70%; animation-delay: 7s;">Signal = (Zone && BarValidation && ATR_threshold)</div>
+        </div>
+        <div class="container">
+            <div class="hero-content centered">
+                <h1>Discover the Power of <span class="highlight">Forex Plug System</span></h1>
+                <p>Advanced linear regression trading indicator that identifies optimal buy and sell zones with precision, generating clear entry confirmation dots for high-probability trades. Designed for serious traders on MetaTrader 4 and 5 platforms.</p>
+                <div class="cta-buttons">
+                    <a href="#pricing" class="btn btn-primary">Get Started</a>
+                    <a href="#trade-anatomy" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trade Anatomy Section -->
+    <section class="trade-anatomy" id="trade-anatomy">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trade <span class="highlight">Anatomy</span></h2>
+                <p>Explore the components of a successful Forex Plug System trade</p>
+            </div>
+            <div class="anatomy-container">
+                <div class="anatomy-chart">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-button"></div>
+                            <div class="terminal-button"></div>
+                            <div class="terminal-button"></div>
+                            <div class="terminal-title">Forex Plug System Indicator</div>
+                        </div>
+                        <div class="terminal-screen">
+                            <div class="chart-animation">
+                                <div class="price-labels">
+                                    <div class="price-label">1.25000</div>
+                                    <div class="price-label">1.24800</div>
+                                    <div class="price-label">1.24600</div>
+                                    <div class="price-label">1.24400</div>
+                                    <div class="price-label">1.24200</div>
+                                </div>
+                                <div class="chart-controls">
+                                    <button class="chart-btn buy-btn">Buy Signal</button>
+                                    <button class="chart-btn sell-btn">Sell Signal</button>
+                                </div>
+                                <div class="candlestick-chart">
+                                    <!-- Candlesticks will be generated by JavaScript -->
+                                </div>
+                                <div class="signal-zone"></div>
+                                <div class="signal-label"></div>
+                                <div class="horizontal-lines">
+                                    <div class="h-line" style="top: 20%"></div>
+                                    <div class="h-line" style="top: 40%"></div>
+                                    <div class="h-line" style="top: 60%"></div>
+                                    <div class="h-line" style="top: 80%"></div>
+                                </div>
+                                <div class="vertical-lines">
+                                    <div class="v-line" style="left: 20%"></div>
+                                    <div class="v-line" style="left: 40%"></div>
+                                    <div class="v-line" style="left: 60%"></div>
+                                    <div class="v-line" style="left: 80%"></div>
+                                </div>
+                                <div class="cursor-dot"></div>
+                                <div class="cursor-price"></div>
+                                <div class="price-vertical-line"></div>
+                                <div class="timeframe-label">M15</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="anatomy-details">
+                    <div class="anatomy-item active" data-point="regression">
+                        <h3>Trend Identification</h3>
+                        <p>The Forex Plug System begins by establishing the dominant market trend using linear regression analysis over 100 price bars. Unlike simple moving averages, this statistical method quantifies both direction and strength, identifying the exact slope of price movement. A positive slope confirms an uptrend, while a negative slope indicates a downtrend, providing the foundational bias for all trading decisions.</p>
+                    </div>
+                    <div class="anatomy-item" data-point="deviation">
+                        <h3>Zone Detection</h3>
+                        <p>The system precisely calculates maximum price deviations from the regression line, creating dynamic support and resistance boundaries. These deviations form two critical trading zones: the upper sell zone (when price extends too far above fair value) and the lower buy zone (when price drops significantly below fair value). The statistical outlier analysis ensures these zones represent true reversal probabilities rather than arbitrary levels.</p>
+                    </div>
+                    <div class="anatomy-item" data-point="zone">
+                        <h3>Volatility Filtration</h3>
+                        <p>To eliminate false signals, the system employs ATR-based volatility analysis that adapts to current market conditions. Only price movements exceeding 0.6 × ATR are considered significant enough to trigger a potential trade. This mathematical filter ensures you only respond to meaningful price action, avoiding the common pitfall of overtrading during consolidation or low-volatility periods.</p>
+                    </div>
+                    <div class="anatomy-item" data-point="entry">
+                        <h3>Signal Confirmation</h3>
+                        <p>When price enters a buy or sell zone, the system applies rigorous statistical validation before generating a signal dot. For buy signals, the algorithm confirms the current high exceeds adjacent highs (momentum confirmation), while sell signals require the current low to be below adjacent lows. This multi-factor approach statistically increases winning probability by filtering out weak zone touches.</p>
+                    </div>
+                    <div class="anatomy-item" data-point="exit">
+                        <h3>Risk-Reward Optimization</h3>
+                        <p>Take profit targets are derived from the regression model using a proprietary Fibonacci extension adaptation. The system projects optimal exit points where price is likely to return to fair value or extend to the opposite deviation bound. This mathematical approach to profit targeting maintains a minimum 1:3 risk-reward ratio, ensuring winning trades significantly outweigh losses.</p>
+                    </div>
+                    <div class="anatomy-item" data-point="risk">
+                        <h3>Systematic Position Management</h3>
+                        <p>The Forex Plug System implements dynamic risk controls designed to minimize drawdowns. Stop losses are mathematically placed outside the trading zone with additional buffer calculated as a function of the ATR. This approach ensures adequate protection while preventing premature stopouts from normal market noise. The fixed 2% maximum risk per trade creates consistent position sizing regardless of market volatility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Timeline Section -->
+    <section class="trading-day">
+        <div class="container">
+            <div class="section-header">
+                <h2>A Day With <span class="highlight">Forex Plug System</span></h2>
+                <p>Follow a trader's journey through a typical trading session, emphasizing the critical confirmation signals</p>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-track"></div>
+                <div class="timeline-slider">
+                    <div class="time-point" data-time="0100">
+                        <div class="time-marker">
+                            <span>01:00</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon">
+                                <i class="fas fa-power-off"></i>
+                            </div>
+                            <h3>System Activation</h3>
+                            <p>The trading day begins as the Forex Plug System activates within its defined trading window (01:00-19:00). Previous graphical objects are cleared, and the system recalculates support/resistance levels based on the regression algorithm.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="0330">
+                        <div class="time-marker">
+                            <span>03:30</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Market Analysis</h3>
+                            <p>The system's linear regression algorithm analyzes the last 100 bars to establish trend direction and calculates maximum price deviations, creating dynamic <strong>buy and sell zones</strong> that adapt to current market conditions and volatility.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="0745">
+                        <div class="time-marker">
+                            <span>07:45</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>Multi-Pair Zone Monitoring</h3>
+                            <p>The trader observes potential setups across multiple currency pairs: a <strong>blue buy zone</strong> on EUR/USD and a <strong>red sell zone</strong> on GBP/JPY. Despite price entering these zones, no confirmation signals have appeared yet. The trader remains patient, monitoring both instruments simultaneously.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="0800">
+                        <div class="time-marker">
+                            <span>08:00</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon buy">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h3>First Signal Confirmation</h3>
+                            <p>While monitoring both potential setups, the EUR/USD pair shows a blue <strong>buy confirmation dot</strong> first when all validation criteria are met: (1) price remains within the buy zone, (2) current high exceeds adjacent highs, and (3) movement exceeds the ATR threshold. The trader focuses on this confirmed opportunity, while keeping the GBP/JPY setup on watch.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="0815">
+                        <div class="time-marker">
+                            <span>08:15</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon buy">
+                                <i class="fas fa-arrow-alt-circle-up"></i>
+                            </div>
+                            <h3>Trade Execution</h3>
+                            <p>With the confirmation signal validated, the trader enters a buy position at the recommended entry point, with stop-loss placed below the buy zone and take profit targets set at the levels calculated by the indicator, maintaining the 1:3 risk-reward ratio.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="1130">
+                        <div class="time-marker">
+                            <span>11:30</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <h3>Trade Management</h3>
+                            <p>As price moves favorably, the trader monitors the position. The linear regression continues to update, providing real-time feedback on the strength of the current trend and potential exit conditions as price approaches the target.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="1420">
+                        <div class="time-marker">
+                            <span>14:20</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon buy">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3>Take Profit Hit</h3>
+                            <p>Price reaches the predetermined take profit level, securing a successful trade with a 3:1 reward-to-risk ratio. The system has performed exactly as expected, identifying a high-probability reversal point with precise entry and exit points.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="1645">
+                        <div class="time-marker">
+                            <span>16:45</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3>New Multi-Pair Opportunity</h3>
+                            <p>After closing the profitable EUR/USD trade, the trader identifies new potential setups forming: AUD/USD enters a <strong>red sell zone</strong> while USD/CAD approaches a <strong>blue buy zone</strong>. The disciplined trader monitors both pairs, waiting to see which setup will receive confirmation first before committing capital.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="1710">
+                        <div class="time-marker">
+                            <span>17:10</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon sell">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h3>Sell Signal Confirmation</h3>
+                            <p>The AUD/USD pair produces a red <strong>sell confirmation dot</strong> first when all validation criteria are met: (1) price remains in the sell zone, (2) current low is below adjacent lows, and (3) movement exceeds the ATR threshold. The trader shifts focus to this confirmed sell opportunity while placing the USD/CAD setup on hold.</p>
+                        </div>
+                    </div>
+                    <div class="time-point" data-time="1900">
+                        <div class="time-marker">
+                            <span>19:00</span>
+                        </div>
+                        <div class="time-content">
+                            <div class="time-icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <h3>Session Review</h3>
+                            <p>As the trading window closes, the trader reviews the day's signals across multiple currency pairs. The systematic approach of <strong>monitoring both buy and sell zones</strong> across different instruments and <strong>waiting for confirmation signals</strong> proved successful, yielding two high-quality trade opportunities with precise entries and clear risk management.</p>
+                            <p>By remaining patient and focusing only on the setups that received full confirmation, the trader was able to avoid several false entries that would have resulted in losses.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-controls">
+                    <button class="timeline-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="timeline-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="timeline-navigation">
+                    <div class="timeline-dot active" data-index="0"></div>
+                    <div class="timeline-dot" data-index="1"></div>
+                    <div class="timeline-dot" data-index="2"></div>
+                    <div class="timeline-dot" data-index="3"></div>
+                    <div class="timeline-dot" data-index="4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mathematical Foundation Section -->
+    <section class="math-foundation">
+        <div class="container">
+            <div class="section-header">
+                <h2>The <span class="highlight">Mathematics</span> Behind Success</h2>
+                <p>Understanding the statistical and mathematical principles that power the Forex Plug System</p>
+            </div>
+            <div class="math-container">
+                <div class="math-tabs">
+                    <button class="math-tab active" data-tab="regression">Linear Regression</button>
+                    <button class="math-tab" data-tab="deviation">Maximum Deviation</button>
+                    <button class="math-tab" data-tab="atr">ATR Filtering</button>
+                    <button class="math-tab" data-tab="confirmation">Signal Confirmation</button>
+                </div>
+                <div class="math-content">
+                    <div class="math-panel active" id="regression-panel">
+                        <div class="math-visualization">
+                            <div class="math-formula">
+                                <div class="formula-display">
+                                    <span class="formula">y = mx + b</span>
+                                    <span class="where">where:</span>
+                                    <span class="variables">
+                                        m = slope (trend direction)<br>
+                                        b = y-intercept<br>
+                                        x = time (bar number)<br>
+                                        y = price
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="math-chart">
+                                <!-- Regression line visualization will be added with JS -->
+                            </div>
+                        </div>
+                        <div class="math-explanation">
+                            <h3>The Core Algorithm</h3>
+                            <p>The Forex Plug System's foundation is built on the Least Squares Method for calculating linear regression. By analyzing 100 bars of price data, the system determines the line that best fits the recent price action, minimizing the sum of squared distances between price points and the regression line.</p>
+                            <p>This regression line represents the statistical "fair value" of price over time, revealing the underlying trend direction and strength. The slope (m) indicates trend direction: positive for uptrends, negative for downtrends, with the magnitude reflecting trend strength.</p>
+                            <p>Unlike simple moving averages that lag behind price, linear regression incorporates the entire price dataset to produce a more accurate representation of the current market trend.</p>
+                        </div>
+                    </div>
+                    <div class="math-panel" id="deviation-panel">
+                        <div class="math-visualization">
+                            <div class="math-formula">
+                                <div class="formula-display">
+                                    <span class="formula">d<sub>max</sub> = max(|P<sub>i</sub> - LR<sub>i</sub>|)</span>
+                                    <span class="where">where:</span>
+                                    <span class="variables">
+                                        d<sub>max</sub> = maximum deviation<br>
+                                        P<sub>i</sub> = price at bar i<br>
+                                        LR<sub>i</sub> = regression line value at bar i
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="math-chart">
+                                <!-- Deviation visualization will be added with JS -->
+                            </div>
+                        </div>
+                        <div class="math-explanation">
+                            <h3>Dynamic Support & Resistance</h3>
+                            <p>The system calculates the maximum deviation of price from the regression line in both directions. These deviations determine the width of the channel around the regression line, creating dynamic support and resistance levels.</p>
+                            <p>The calculation considers both upward (Ld_FFD0) and downward (Ld_FFC8) price deviations separately, allowing the system to account for asymmetrical price movements often seen in trending markets.</p>
+                            <p>If the upward deviation is greater than the downward deviation, support and resistance lines are adjusted accordingly, ensuring they accurately reflect the actual price behavior rather than using fixed distances that might not represent real market conditions.</p>
+                        </div>
+                    </div>
+                    <div class="math-panel" id="atr-panel">
+                        <div class="math-visualization">
+                            <div class="math-formula">
+                                <div class="formula-display">
+                                    <span class="formula">ATR<sub>threshold</sub> = 0.6 × ATR<sub>50</sub></span>
+                                    <span class="where">where:</span>
+                                    <span class="variables">
+                                        ATR<sub>50</sub> = Average True Range over 50 bars<br>
+                                        0.6 = Scaling factor for signal sensitivity
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="math-chart">
+                                <!-- ATR visualization will be added with JS -->
+                            </div>
+                        </div>
+                        <div class="math-explanation">
+                            <h3>Volatility-Based Filtering</h3>
+                            <p>The Forex Plug System uses the Average True Range (ATR) to filter out market noise and identify significant price movements. By calculating ATR over the last 50 bars, the system establishes a dynamic threshold that adapts to current market volatility.</p>
+                            <p>This threshold (Ld_FF98) is set at 0.6 times the ATR value, creating a balance between sensitivity and reliability. A lower factor would generate more signals but include more false positives, while a higher factor would miss legitimate opportunities.</p>
+                            <p>This ATR-based filtering ensures that price movements qualify as significant only when they exceed normal market fluctuations, increasing the reliability of trade signals and reducing the likelihood of entering false breakouts.</p>
+                        </div>
+                    </div>
+                    <div class="math-panel" id="confirmation-panel">
+                        <div class="math-visualization">
+                            <div class="math-formula">
+                                <div class="formula-display">
+                                    <span class="formula">Signal = (Zone && BarValidation && ATR<sub>threshold</sub>)</span>
+                                    <span class="where">where:</span>
+                                    <span class="variables">
+                                        Zone = Price in buy/sell zone<br>
+                                        BarValidation = Current bar high/low exceeds adjacent bars<br>
+                                        ATR<sub>threshold</sub> = Movement exceeds ATR threshold
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="math-chart">
+                                <!-- Signal confirmation visualization will be added with JS -->
+                            </div>
+                        </div>
+                        <div class="math-explanation">
+                            <h3>Multi-Factor Validation</h3>
+                            <p>For a buy or sell signal to be confirmed, the Forex Plug System requires multiple conditions to be met simultaneously, applying Boolean logic to filter out weak signals.</p>
+                            <p>For buy signals, the system verifies that: (1) price is within the buy zone, (2) the current high exceeds the highs of adjacent bars (confirming upward momentum), and (3) the movement exceeds the ATR threshold.</p>
+                            <p>Similarly, sell signals require: (1) price within the sell zone, (2) the current low to be lower than adjacent bars (confirming downward momentum), and (3) movement exceeding the ATR threshold.</p>
+                            <p>This multi-factor approach reduces false signals and increases the probability of successful trades, allowing the system to maintain its impressive 85% win rate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Before/After Results Section -->
+    <section class="results-comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trading <span class="highlight">Transformation</span></h2>
+                <p>See the dramatic difference the Forex Plug System makes in real trading performance</p>
+            </div>
+            <div class="comparison-slider-container">
+                <div class="comparison-slider">
+                    <div class="before-side">
+                        <div class="comparison-header">
+                            <h3>Before Forex Plug System</h3>
+                        </div>
+                        <div class="comparison-chart">
+                            <!-- Before chart will be added with JavaScript -->
+                            <div class="chart-placeholder before-chart">
+                                <svg width="100%" height="150" viewBox="0 0 300 150" preserveAspectRatio="none">
+                                    <!-- Down trending line chart -->
+                                    <polyline 
+                                        points="0,30 40,45 80,60 120,80 160,65 200,90 240,100 280,120" 
+                                        fill="none" 
+                                        stroke="#ff5252" 
+                                        stroke-width="3" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round" />
+                                    <!-- Small fluctuations/noise -->
+                                    <polyline 
+                                        points="0,30 10,27 20,32 30,28 40,45 50,42 60,48 70,52 80,60 90,58 100,62 110,59 120,80 130,76 140,81 150,79 160,65 170,68 180,65 190,70 200,90 210,87 220,92 230,88 240,100 250,105 260,95 270,110 280,120" 
+                                        fill="none" 
+                                        stroke="#ff5252" 
+                                        stroke-width="1.5" 
+                                        stroke-opacity="0.8"
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round" />
+                                    <!-- Axis -->
+                                    <line x1="0" y1="140" x2="300" y2="140" stroke="#999" stroke-width="1" />
+                                </svg>
+                            </div>
+                            <div class="chart-stats">
+                                <div class="stat-box negative">
+                                    <span class="stat-value">30%</span>
+                                    <span class="stat-label">Win Rate</span>
+                                </div>
+                                <div class="stat-box negative">
+                                    <span class="stat-value">1:1</span>
+                                    <span class="stat-label">Risk:Reward</span>
+                                </div>
+                                <div class="stat-box negative">
+                                    <span class="stat-value">High</span>
+                                    <span class="stat-label">Uncertainty</span>
+                                </div>
+                                <div class="stat-box negative">
+                                    <span class="stat-value">-50%</span>
+                                    <span class="stat-label">Monthly Return</span>
+                                </div>
+                            </div>
+                            <div class="comparison-details">
+                                <ul>
+                                    <li><i class="fas fa-times-circle"></i> Emotional trading decisions</li>
+                                    <li><i class="fas fa-times-circle"></i> Inconsistent entry criteria</li>
+                                    <li><i class="fas fa-times-circle"></i> Unclear stop loss placement</li>
+                                    <li><i class="fas fa-times-circle"></i> Poor trade timing</li>
+                                    <li><i class="fas fa-times-circle"></i> Lack of mathematical edge</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="after-side">
+                        <div class="comparison-header">
+                            <h3>With Forex Plug System</h3>
+                        </div>
+                        <div class="comparison-chart">
+                            <!-- After chart will be added with JavaScript -->
+                            <div class="chart-placeholder after-chart">
+                                <svg width="100%" height="150" viewBox="0 0 300 150" preserveAspectRatio="none">
+                                    <!-- Up trending line chart -->
+                                    <polyline 
+                                        points="0,120 40,100 80,90 120,70 160,60 200,50 240,40 280,20" 
+                                        fill="none" 
+                                        stroke="#4caf50" 
+                                        stroke-width="3" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round" />
+                                    <!-- Small fluctuations/noise with overall uptrend -->
+                                    <polyline 
+                                        points="0,120 10,118 20,123 30,116 40,100 50,104 60,97 70,95 80,90 90,86 100,92 110,85 120,70 130,75 140,68 150,72 160,60 170,65 180,58 190,56 200,50 210,46 220,52 230,45 240,40 250,36 260,42 270,32 280,20" 
+                                        fill="none" 
+                                        stroke="#4caf50" 
+                                        stroke-width="1.5" 
+                                        stroke-opacity="0.8"
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round" />
+                                    <!-- Axis -->
+                                    <line x1="0" y1="140" x2="300" y2="140" stroke="#999" stroke-width="1" />
+                                </svg>
+                            </div>
+                            <div class="chart-stats">
+                                <div class="stat-box positive">
+                                    <span class="stat-value">70%</span>
+                                    <span class="stat-label">Win Rate</span>
+                                </div>
+                                <div class="stat-box positive">
+                                    <span class="stat-value">1:3</span>
+                                    <span class="stat-label">Risk:Reward</span>
+                                </div>
+                                <div class="stat-box positive">
+                                    <span class="stat-value">Clear</span>
+                                    <span class="stat-label">Signal Quality</span>
+                                </div>
+                                <div class="stat-box positive">
+                                    <span class="stat-value">+50%</span>
+                                    <span class="stat-label">Monthly Return</span>
+                                </div>
+                            </div>
+                            <div class="comparison-details">
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Data-driven trading decisions</li>
+                                    <li><i class="fas fa-check-circle"></i> Mathematically validated entries</li>
+                                    <li><i class="fas fa-check-circle"></i> Precise stop loss and take profit</li>
+                                    <li><i class="fas fa-check-circle"></i> Optimal trade timing</li>
+                                    <li><i class="fas fa-check-circle"></i> Statistically proven edge</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-highlight">
+                <blockquote>
+                    "The difference in my trading account before and after implementing the Forex Plug System was night and day. I went from constantly second-guessing my entries and taking losses to having clear, confident trades with a system that gives me a genuine mathematical edge in the markets."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="author-image"></div>
+                    <div class="author-details">
+                        <h4>Robert J.</h4>
+                        <p>Professional Trader, 8 years experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section With Interactive Elements -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Common <span class="highlight">Questions</span></h2>
+                <p>Everything you need to know about the Forex Plug System</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What makes the Forex Plug System different from other indicators?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Unlike traditional indicators that rely on lagging price data, the Forex Plug System employs a unique linear regression approach combined with ATR-based filtering to identify statistically valid trade opportunities. Our system uses the Least Squares Method across 100 bars to establish trend direction and dynamically adjusts support/resistance levels based on actual price deviations rather than fixed values.</p>
+                        <p>This mathematical foundation means you're trading with a genuine statistical edge rather than subjective interpretations of price movements.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Which timeframes and currency pairs work best with the system?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Forex Plug System works effectively across a wide range of financial instruments. While it's optimized for the M15, H1, and H4 timeframes, where it produces the most reliable signals, traders have reported success on timeframes ranging from M5 to Daily charts.</p>
+                        <p>The system can be applied to:</p>
+                        <ul>
+                            <li><strong>Major Forex Pairs:</strong> EUR/USD, GBP/USD, USD/JPY, and all other major pairs</li>
+                            <li><strong>Commodities:</strong> Gold (XAUUSD)</li>
+                            <li><strong>Indices:</strong> US30 (Dow Jones), NASDAQ</li>
+                            <li><strong>Cryptocurrencies:</strong> Bitcoin</li>
+                        </ul>
+                        <p>For optimal results, we recommend trading during active market hours (01:00-19:00 in the default settings) when your chosen instrument has the highest liquidity.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How many signals does the system generate daily?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Forex Plug System typically generates 3-5 high-quality signals per day across all monitored pairs on the H1 timeframe. This is by design – we prioritize quality over quantity, ensuring each signal has a high probability of success rather than overwhelming you with numerous low-quality opportunities.</p>
+                        <p>The exact number varies based on market conditions and volatility, with more signals during trending markets and fewer during ranging or low-volatility periods.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is the indicator repainted or does it generate authentic signals?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The Forex Plug System generates 100% non-repainting signals. Once a buy or sell dot appears on your chart, it remains in that exact position permanently. This commitment to non-repainting signals ensures you can make real-time trading decisions with confidence.</p>
+                        <p>Our system validates signals using completed bar data rather than tick data, meaning all signals are confirmed only after a price bar closes, eliminating the false signals common with repainting indicators.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What support do I receive with my purchase?</h3>
+                        <span class="toggle-icon"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>With your purchase, you receive lifetime one-on-one support and guidance on all forex related questions. Our comprehensive support package includes:</p>
+                        <ul>
+                            <li>Unlimited personal consultation sessions</li>
+                            <li>24/7 access to our private trading community</li>
+                            <li>Lifetime guidance on trading strategies and market analysis</li>
+                            <li>Expert advice on risk management and trade execution</li>
+                            <li>Free lifetime updates and enhancements</li>
+                            <li>Priority technical support</li>
+                        </ul>
+                        <p>Our dedicated support team consists of experienced traders who are committed to helping you succeed in your trading journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Success Gallery Section -->
+    <section class="success-gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Client <span class="highlight">Success Stories</span></h2>
+                <p>Real conversations with our members showing their trading journey and results</p>
+            </div>
+            
+            <div class="simple-gallery">
+                <div class="gallery-grid">
+                    <!-- First row examples - the rest will be loaded via JavaScript -->
+                    <div class="gallery-item">
+                        <img src="img/review1.jpg" alt="Client Success 1" class="review-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/review2.jpg" alt="Client Success 2" class="review-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/review3.jpg" alt="Client Success 3" class="review-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="img/review4.jpg" alt="Client Success 4" class="review-image">
+                    </div>
+                </div>
+                
+                <div class="gallery-controls">
+                    <button class="gallery-btn prev-btn" aria-label="Previous page">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="page-indicator">
+                        Page <span class="current-page">1</span> of <span class="total-pages">13</span>
+                    </div>
+                    <button class="gallery-btn next-btn" aria-label="Next page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Fullscreen Gallery Overlay -->
+        <div class="fullscreen-gallery">
+            <div class="fullscreen-controls">
+                <button class="fullscreen-close" aria-label="Close fullscreen view">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="fullscreen-container">
+                <button class="fullscreen-nav fullscreen-prev" aria-label="Previous image">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="fullscreen-image-container">
+                    <img src="" alt="Fullscreen view" class="fullscreen-image">
+                </div>
+                <button class="fullscreen-nav fullscreen-next" aria-label="Next image">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="fullscreen-counter">
+                <span class="current-image">1</span> / <span class="total-images">50</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ready to <span class="highlight">Plug In?</span></h2>
+                <p>Join the revolution in forex trading. With the Forex Plug System, you can trade smarter, faster, and with confidence.</p>
+            </div>
+            <div class="pricing-single">
+                <div class="pricing-card featured">
+                    <div class="pricing-tag">Limited Time Offer</div>
+                    <div class="pricing-header">
+                        <h3>Lifetime Access</h3>
+                        <div class="price">R800 <span>once-off</span></div>
+                        <p>Unlock the full potential of your trading with a single payment</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Lifetime access to Forex Plug System</li>
+                            <li><i class="fas fa-check"></i> Compatible with MetaTrader 4 & 5</li>
+                            <li><i class="fas fa-check"></i> Email and on-screen alerts</li>
+                            <li><i class="fas fa-check"></i> Unlimited updates and enhancements</li>
+                            <li><i class="fas fa-check"></i> Priority technical support</li>
+                            <li><i class="fas fa-check"></i> Access to private trading community</li>
+                            <li><i class="fas fa-check"></i> Trading strategy guides</li>
+                            <li><i class="fas fa-check"></i> Trade with any currency pair</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="https://paystack.com/pay/systemlifetime" target="_blank" class="btn btn-primary">Get Lifetime Access Now</a>
+                    </div>
+                    <div class="guarantee">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>30-Day Money-Back Guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Elevate Your <span class="highlight">Trading?</span></h2>
+                <p>Join thousands of successful traders using the Forex Plug System today</p>
+                <a href="https://paystack.com/pay/systemlifetime" target="_blank" class="btn btn-primary">Get Started Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <span class="forex">FOREX</span><span class="plug">PLUG</span> <span class="system">SYSTEM</span>
+                    </div>
+                    <p>Advanced trading indicator utilizing linear regression and price action confirmations to identify optimal buy and sell zones in the forex market.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Connect With Us</h3>
+                    <p><i class="fas fa-envelope"></i> support@forexplug.com</p>
+                    <div class="contact-buttons">
+                        <a href="https://t.me/forexplugsystem" target="_blank" class="contact-btn telegram-btn">
+                            <i class="fab fa-telegram-plane"></i> Chat on Telegram
+                        </a>
+                        <a href="https://www.instagram.com/forexplugsystem/" target="_blank" class="contact-btn instagram-btn">
+                            <i class="fab fa-instagram"></i> Follow on Instagram
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Telegram Community</h3>
+                    <p>Join our official Telegram channel for exclusive trading signals, market insights, and community support.</p>
+                    <a href="https://t.me/forexplugchannel" target="_blank" class="btn btn-primary telegram-btn">
+                        <i class="fab fa-telegram-plane"></i> Join Telegram Channel
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Forex Plug System. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
