@@ -1806,4 +1806,301 @@ function initHeroAnimation() {
             signalDot.remove();
         }, 4000);
     }, 5000);
+}
+
+// Modified file upload handler
+function handleFileUpload(file) {
+    if (!file || file.type !== 'text/csv') {
+        alert('Please upload a valid CSV file');
+        return;
+    }
+    
+    if (file.size > 20 * 1024 * 1024) { // 20MB limit
+        alert('File size exceeds 20MB limit');
+        return;
+    }
+    
+    // Update file info
+    document.getElementById('uploaded-filename').textContent = file.name;
+    document.getElementById('uploaded-filesize').textContent = formatFileSize(file.size);
+    
+    // Show uploaded file info and processing
+    uploadedFileInfo.style.display = 'block';
+    csvUploadArea.style.display = 'none';
+    
+    // Show processing indicator
+    const processingEl = document.querySelector('.upload-processing');
+    const successEl = document.querySelector('.upload-success');
+    processingEl.style.display = 'block';
+    successEl.style.display = 'none';
+    
+    // Simulate progress
+    let progress = 0;
+    const progressFill = document.getElementById('upload-progress-fill');
+    const progressText = document.getElementById('upload-progress-text');
+    
+    const progressInterval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress > 100) progress = 100;
+        
+        progressFill.style.width = `${progress}%`;
+        progressText.textContent = `${Math.round(progress)}%`;
+        
+        if (progress === 100) {
+            clearInterval(progressInterval);
+            
+            // After "processing" is complete
+            setTimeout(() => {
+                processingEl.style.display = 'none';
+                successEl.style.display = 'flex';
+                
+                // Now read the file
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const contents = e.target.result;
+                    processCSV(contents);
+                };
+                reader.readAsText(file);
+            }, 800);
+        }
+    }, 200);
+}
+
+// Process CSV data with enhanced preview
+function processCSV(csvData) {
+    // Basic CSV parsing
+    const rows = csvData.split('\n');
+    if (rows.length < 2) {
+        alert('CSV file is empty or invalid');
+        return;
+    }
+    
+    // Get headers
+    const headers = rows[0].split(',').map(h => h.trim());
+    
+    // Update rows count
+    document.getElementById('uploaded-rows').textContent = (rows.length - 1) + ' rows';
+    
+    // Create preview
+    createDataPreview(headers, rows.slice(1, 6));
+    
+    // Add data summary
+    updateDataSummary(rows, headers);
+}
+
+// Create data preview table
+function createDataPreview(headers, dataRows) {
+    const headerRow = document.getElementById('preview-header');
+    const tableBody = document.getElementById('preview-body');
+    
+    // Clear existing content
+    headerRow.innerHTML = '';
+    tableBody.innerHTML = '';
+    
+    // Add header cells
+    headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+    });
+    
+    // Add data rows (limited to 5)
+    dataRows.forEach(row => {
+        if (!row.trim()) return; // Skip empty rows
+        
+        const cells = row.split(',');
+        const tr = document.createElement('tr');
+        
+        cells.forEach((cell, index) => {
+            if (index < headers.length) { // Only show cells that match headers
+                const td = document.createElement('td');
+                td.textContent = cell.trim();
+                tr.appendChild(td);
+            }
+        });
+        
+        tableBody.appendChild(tr);
+    });
+}
+
+// Update data summary information
+function updateDataSummary(rows, headers) {
+    // Find datetime column index
+    const dateTimeIndex = headers.findIndex(h => 
+        h.toLowerCase().includes('date') || h.toLowerCase().includes('time'));
+    
+    if (dateTimeIndex !== -1) {
+        // Get first and last date
+        let firstDate = null;
+        let lastDate = null;
+        
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i].trim();
+            if (!row) continue;
+            
+            const cells = row.split(',');
+            if (cells.length <= dateTimeIndex) continue;
+            
+            const dateStr = cells[dateTimeIndex].trim();
+            if (!dateStr) continue;
+            
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) continue;
+            
+            if (firstDate === null || date < firstDate) {
+                firstDate = date;
+            }
+            
+            if (lastDate === null || date > lastDate) {
+                lastDate = date;
+            }
+        }
+        
+        if (firstDate && lastDate) {
+            // Format dates
+            const formatDate = d => {
+                return d.toLocaleDateString(undefined, {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            };
+            
+            // Update time range
+            document.getElementById('data-time-range').textContent = 
+                `${formatDate(firstDate)} to ${formatDate(lastDate)}`;
+                
+            // Determine timeframe by examining time differences
+            determineTimeframe(rows, dateTimeIndex);
+        }
+    } else {
+        document.getElementById('data-time-range').textContent = 'Unknown';
+    }
+    
+    // Rate data quality based on completeness and required columns
+    rateDataQuality(headers, rows);
+}
+
+// Determine approximate timeframe from data
+function determineTimeframe(rows, dateTimeIndex) {
+    // Sample some rows to determine average time difference
+    const dateSamples = [];
+    let lastDate = null;
+    let sampleCount = 0;
+    
+    // Sample up to 20 consecutive dates for analysis
+    for (let i = 1; i < rows.length && sampleCount < 20; i++) {
+        const row = rows[i].trim();
+        if (!row) continue;
+        
+        const cells = row.split(',');
+        if (cells.length <= dateTimeIndex) continue;
+        
+        const dateStr = cells[dateTimeIndex].trim();
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) continue;
+        
+        if (lastDate !== null) {
+            const diffMinutes = (date - lastDate) / (1000 * 60);
+            dateSamples.push(diffMinutes);
+            sampleCount++;
+        }
+        
+        lastDate = date;
+    }
+    
+    // Calculate average time difference
+    if (dateSamples.length > 0) {
+        const avgDiff = dateSamples.reduce((a, b) => a + b, 0) / dateSamples.length;
+        let timeframe = 'Unknown';
+        
+        // Determine timeframe from average difference
+        if (avgDiff < 5) timeframe = 'M1';
+        else if (avgDiff < 10) timeframe = 'M5';
+        else if (avgDiff < 20) timeframe = 'M15';
+        else if (avgDiff < 45) timeframe = 'M30';
+        else if (avgDiff < 120) timeframe = 'H1';
+        else if (avgDiff < 300) timeframe = 'H4';
+        else if (avgDiff < 1500) timeframe = 'D1';
+        else if (avgDiff < 10000) timeframe = 'W1';
+        else timeframe = 'MN';
+        
+        document.getElementById('data-timeframe').textContent = timeframe;
+    } else {
+        document.getElementById('data-timeframe').textContent = 'Unknown';
+    }
+}
+
+// Rate data quality
+function rateDataQuality(headers, rows) {
+    let score = 0;
+    let maxScore = 0;
+    
+    // Check for required columns
+    const requiredColumns = ['datetime', 'open', 'high', 'low', 'close', 'volume'];
+    const lowerHeaders = headers.map(h => h.toLowerCase());
+    
+    requiredColumns.forEach(reqCol => {
+        maxScore += 1;
+        if (lowerHeaders.some(h => h.includes(reqCol))) {
+            score += 1;
+        }
+    });
+    
+    // Check data completeness
+    let nonEmptyCells = 0;
+    let totalCells = 0;
+    
+    // Sample up to 100 rows
+    const sampleRows = Math.min(rows.length - 1, 100);
+    for (let i = 1; i <= sampleRows; i++) {
+        const row = rows[i].trim();
+        if (!row) continue;
+        
+        const cells = row.split(',');
+        cells.forEach(cell => {
+            totalCells++;
+            if (cell.trim()) {
+                nonEmptyCells++;
+            }
+        });
+    }
+    
+    // Data completeness score
+    if (totalCells > 0) {
+        const completenessScore = nonEmptyCells / totalCells;
+        score += completenessScore * 2;
+        maxScore += 2;
+    }
+    
+    // Check number of rows
+    maxScore += 2;
+    const rowCount = rows.length - 1;
+    if (rowCount >= 1000) {
+        score += 2;
+    } else if (rowCount >= 500) {
+        score += 1.5;
+    } else if (rowCount >= 100) {
+        score += 1;
+    } else if (rowCount >= 50) {
+        score += 0.5;
+    }
+    
+    // Calculate final quality rating
+    const qualityPercentage = (score / maxScore) * 100;
+    let qualityRating = '';
+    
+    if (qualityPercentage >= 90) {
+        qualityRating = 'Excellent';
+    } else if (qualityPercentage >= 75) {
+        qualityRating = 'Good';
+    } else if (qualityPercentage >= 60) {
+        qualityRating = 'Average';
+    } else if (qualityPercentage >= 40) {
+        qualityRating = 'Fair';
+    } else {
+        qualityRating = 'Poor';
+    }
+    
+    document.getElementById('data-quality').textContent = qualityRating;
 } 
